@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: csv-management-app
+    env: node
+    plan: free
+    buildCommand: |
+      # Install backend dependencies
+      cd backend && npm ci --only=production
+      # Install frontend dependencies and build
+      cd ../frontend && npm ci && npm run build
+      # Move build to backend for serving
+      mv build ../backend/public
+    startCommand: cd backend && npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: csv-management-app
+          property: host
+      - key: LOG_LEVEL
+        value: info
+    autoDeploy: true
+    disk:
+      name: csv-data
+      mountPath: /opt/render/project/src/backend/temp
+      sizeGB: 1

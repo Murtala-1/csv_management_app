@@ -36,6 +36,20 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // Static files (for serving uploaded files if needed)
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Serve React build files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../public')));
+  
+  // Catch all handler for React Router
+  app.get('*', (req, res, next) => {
+    // Skip API routes
+    if (req.path.startsWith('/api') || req.path.startsWith('/health')) {
+      return next();
+    }
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+  });
+}
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
