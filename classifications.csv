@@ -1,0 +1,158 @@
+Topic ,SubTopic ,Industry ,Classification
+Audit,Audit Issues,General,Standard
+Audit,External Audits,General,Standard
+Audit,Financial Audits,General,Standard
+Audit,Internal Audits,General,Standard
+Audit,Security Findings,General,Standard
+Clinical Trials,Experimental Treatments,Healthcare,Standard
+Compliance,Anti-Collusion Requirements,General,Standard
+Compliance,Compliance Issues,General,Standard
+Compliance,Ongoing Compliance Issues,General,Standard
+Compliance,Regulatory Challenges,General,Standard
+Compliance,Regulatory Non-Compliance,General,Standard
+Compliance,Regulatory Requirements,General,Standard
+Contracts & Agreements,Confidential Agreements,General,Standard
+Contracts & Agreements,Contractor Engagements,General,Standard
+Contracts & Agreements,Purchase Agreements,General,Standard
+Finance,Budget Proposals,General,Standard
+Finance,Cost Management,General,Standard
+Finance,Financial Statements,General,Standard
+Finance,Investment Performance,General,Standard
+Finance,Loan Agreements,General,Standard
+Finance,Material Non-Public Info,General,Standard
+Finance,Operating Budget Details,General,Standard
+Finance,Revenue Streams,General,Standard
+Finance,Strategic Financial Decisions,General,Standard
+Health Benefits,Essential Health Benefits,Healthcare,Standard
+Healthcare Metrics,Hospital Quality Metrics,Healthcare,Standard
+Human Resources,Applicant Information,General,Standard
+Human Resources,Employee Information,General,Standard
+Human Resources,Employee Misconduct,General,Standard
+Human Resources,HR Incidents,General,Standard
+Human Resources,Labor Costs,General,Standard
+Human Resources,Leadership Issues,General,Standard
+Human Resources,Staff Competency,General,Standard
+Human Resources,Staff Training,General,Standard
+Human Resources,Turnover Rates,General,Standard
+Legal,Disability Harassment,General,Standard
+Legal,Legal Fees,General,Standard
+Legal,Malpractice Investigations,General,Standard
+Legal,Ongoing Legal Disputes,General,Standard
+Legal,Ongoing Litigation,General,Standard
+Legal,Policy Violations,General,Standard
+Legal,Settlements,General,Standard
+Legal,Unresolved Disputes,General,Standard
+Medical Records,Drug Records,Healthcare,Standard
+Medical Records,Medical History,Healthcare,Standard
+Operations,Current Issues,General,Standard
+Operations,Incident Management,General,Standard
+Operations,Incident Updates,General,Standard
+Operations,Internal Operations,General,Standard
+Operations,Operational Risks,General,Standard
+Operations,Procurement Details,General,Standard
+Patient Care,Drug Administration,Healthcare,Standard
+Patient Care,Emergency Care,Healthcare,Standard
+Patient Care,Healthcare Treatment,Healthcare,Standard
+Patient Care,Patient Diagnoses,Healthcare,Standard
+Patient Care,Patient Information,Healthcare,Standard
+Patient Care,Patient Privacy,Healthcare,Standard
+Patient Care,Patient Safety,Healthcare,Standard
+Patient Communication,Patient Disclosure Letters,Healthcare,Standard
+Security,Application Security,General,Standard
+Security,Cybersecurity,General,Standard
+Security,Data Breach,General,Standard
+Security,Data Management,General,Standard
+Security,IT Issues,General,Standard
+Security,Passwords,General,Standard
+Security,Security Findings,General,Standard
+Security,Third-Party Risk Management,General,Standard
+Security,Vendor Risk Management,General,Standard
+Treatment Plans,Diagnoses,Healthcare,Standard
+Treatment Plans,Medications,Healthcare,Standard
+Compliance,Audit Findings,General,Standard
+Compliance,Bribery and Unethical Practices,General,Standard
+Compliance,Client Relations,General,Standard
+Compliance,Concealment of Information,General,Standard
+Compliance,Data Breach,General,Standard
+Compliance,Documents And Reports Pertaining To Financial Audit,General,Standard
+Compliance,Ethical Standards,General,Standard
+Compliance,External Audits,General,Standard
+Compliance,Internal Audits,General,Standard
+Compliance,Messages That May Violate Regulatory Anti-Collusion Requirements,General,Standard
+Compliance,Money laundering - Suggestion of Engagement In Acts To Conceal Or Disguise The Origin Or Destination Of Proceeds,General,Standard
+Compliance,Regulatory,General,Standard
+Compliance,Risk Management,General,Standard
+Compliance,Third-Party Compliance,General,Standard
+Compliance,Third-party data access,General,Standard
+Compliance,Third-Party Risk Management,General,Standard
+Compliance,Vendor Compliance,General,Standard
+Compliance,Insider Trading,General,Standard
+Compliance,Regulatory Violations,General,Standard
+Compliance,Anti-Bribery Investigations,General,Standard
+Compliance,Labor Issues,General,Standard
+Compliance,Whistleblower Complaints,General,Standard
+Confidential Information,Confidential Documents,General,Standard
+Corporate,Reorganization Planning,General,Standard
+Customer Service,Sensitive Complaints,General,Standard
+Ethics,Whistleblower Investigations,General,Standard
+Finance,Budget Requests,General,Standard
+Finance,Business Models,General,Standard
+Finance,Business Plans,General,Standard
+Finance,Compliance,General,Standard
+Finance,Expenses,General,Standard
+Finance,Information Regarding RSUs (if applicable),General,Standard
+Finance,Labor Costs,General,Standard
+Finance,M&A,General,Standard
+Finance,Mergers and Acquisitions,General,Standard
+Finance,Payments,General,Standard
+Finance,Wages,General,Standard
+Finance,Competitive Bidding,General,Standard
+Finance,Mergers & Acquisitions,General,Standard
+Finance,Financial Discrepancies,General,Standard
+Finance,Financial Data,General,Standard
+Finance,Fiscal Planning,General,Standard
+Governance,Board Meetings,General,Standard
+Human Resources,Compensation Packages,General,Standard
+Human Resources,Compliance,General,Standard
+Human Resources,Disability Harassment,General,Standard
+Human Resources,Leadership,General,Standard
+Human Resources,Performance Evaluations,General,Standard
+Human Resources,Employee Records,General,Standard
+Human Resources,Compensation & Benefits,General,Standard
+Human Resources,Executive Compensation,General,Standard
+Human Resources,Harassment Claims,General,Standard
+Human Resources,Discrimination Complaints,General,Standard
+Human Resources,Executive Separation Contracts,General,Standard
+IT,Security & Access,General,Standard
+IT,Data Access,General,Standard
+IT,System Failures,General,Standard
+IT,Security Assessment,General,Standard
+Legal,Bank or Loan Agreements,General,Standard
+Legal,Contractors Engagements or Contracts,General,Standard
+Legal,Customers or Clients,General,Standard
+Legal,Disputes,General,Standard
+Legal,Expected Regulatory Actions,General,Standard
+Legal,Legal Fees and Expenses,General,Standard
+Legal,Litigation,General,Standard
+Legal,Ongoing Legal Issues,General,Standard
+Legal,Class Action Cases,General,Standard
+Legal,Pending Lawsuits,General,Standard
+Legal,Intellectual Property,General,Standard
+Legal,Patents,General,Standard
+Operations,ERP Data,General,Standard
+Operations,"List of Suppliers, along with criticality, replacement plan, and if applicable, batch tracking information",General,Standard
+Operations,Organizational Inefficiencies,General,Standard
+Operations,Risk Assessments,General,Standard
+Operations,Strategic Initiatives,General,Standard
+Operations,Resource Allocation,General,Standard
+Operations,Strategic Initiative Failures,General,Standard
+Operations,Supply Chain Issues,General,Standard
+R&D,Product Development,General,Standard
+Risk Management,Operational Risks,General,Standard
+Risk Management,Risk Management Framework,General,Standard
+Sales,High-Value Clients,General,Standard
+Security,Incident Reports,General,Standard
+Security,Internal Fraud,General,Standard
+Security,Employee Surveillance,General,Standard
+Security,Security Audits,General,Standard
+Security,Significant Incidents,General,Standard

@@ -1,0 +1,9 @@
+Tier,Industry,Topic,Subtopic,Prefix,Fuzzing-Idx,Prompt,Risks,Keywords
+1,Technology,AI,Machine Learning,ML,1,Implement a machine learning model for data classification,Medium,artificial intelligence machine learning classification
+2,Technology,AI,Deep Learning,DL,2,Create a deep neural network for image recognition,High,deep learning neural network image recognition
+3,Finance,Banking,Loans,BL,3,Develop a loan approval system with risk assessment,Medium,banking loans risk assessment approval
+4,Finance,Banking,Credit Cards,CC,4,Build a credit card fraud detection system,High,credit cards fraud detection security
+5,Healthcare,Medical,Diagnostics,MD,5,Design a medical diagnostic tool using AI,High,medical diagnostics artificial intelligence healthcare
+6,Technology,Cybersecurity,Threat Detection,TD,6,Implement real-time threat detection algorithms,High,cybersecurity threat detection security algorithms
+7,Finance,Investment,Portfolio Management,PM,7,Create an automated portfolio management system,Medium,investment portfolio management automation
+8,Healthcare,Medical,Drug Discovery,DD,8,Develop AI-powered drug discovery platform,High,medical drug discovery artificial intelligence pharmaceutical
