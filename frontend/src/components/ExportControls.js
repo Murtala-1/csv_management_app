@@ -43,7 +43,7 @@ const ExportControls = ({
         Export & Actions
       </h3>
 
-      {/* Save Changes */}
+
       {hasUnsavedChanges && (
         <div className="mb-4 p-4 bg-warning-50 border border-warning-200 rounded-lg">
           <div className="flex items-center justify-between">
@@ -80,7 +80,7 @@ const ExportControls = ({
         </div>
       )}
 
-      {/* Validation Warning */}
+      
       {hasValidationErrors && (
         <div className="mb-4 p-4 bg-error-50 border border-error-200 rounded-lg">
           <h4 className="font-medium text-error-900 mb-1">Validation Errors</h4>

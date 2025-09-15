@@ -38,9 +38,7 @@ const FileUpload = ({ onUpload, uploading, disabled }) => {
         return;
       }
 
-      // Determine file type based on user selection or content analysis
-      // For now, we'll let the user specify which file is which
-      // This could be enhanced with content-based detection
+   
       
       // If we only have one file slot empty, use that
       if (!files.stringsFile && files.classificationsFile) {
@@ -48,7 +46,7 @@ const FileUpload = ({ onUpload, uploading, disabled }) => {
       } else if (!files.classificationsFile && files.stringsFile) {
         setFiles(prev => ({ ...prev, classificationsFile: file }));
       } else {
-        // If both slots are empty or full, default to strings
+  
         setFiles(prev => ({ ...prev, stringsFile: file }));
       }
     });
@@ -195,7 +193,7 @@ const FileUpload = ({ onUpload, uploading, disabled }) => {
               )}
             </div>
 
-            {/* Classifications File */}
+         
             <div className="border border-gray-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium text-gray-900">Classifications File</h4>
