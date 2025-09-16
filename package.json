@@ -48,5 +48,10 @@
   "bugs": {
     "url": "https://github.com/your-username/csv-management-app/issues"
   },
-  "homepage": "https://github.com/your-username/csv-management-app#readme"
+  "homepage": "https://github.com/your-username/csv-management-app#readme",
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "axios": "^1.12.2",
+    "form-data": "^4.0.4"
+  }
 }

@@ -272,39 +272,110 @@ router.get('/export', async (req, res, next) => {
     if (type === 'both') {
       // Create ZIP file with both CSV files
       const zipPath = path.join(tempDir, `csv-export-${timestamp}.zip`);
-      const output = require('fs').createWriteStream(zipPath);
-      const archive = archiver('zip', { zlib: { level: 9 } });
+      const tempFiles = []; // Track temporary files for cleanup
+      
+      try {
+        const output = require('fs').createWriteStream(zipPath);
+        const archive = archiver('zip', { zlib: { level: 9 } });
 
-      archive.pipe(output);
+        // Handle archiver errors
+        archive.on('error', (err) => {
+          logger.error('Archiver error:', err);
+          throw err;
+        });
 
-      // Generate strings CSV
-      if (sessionData.strings.length > 0) {
-        const stringsPath = path.join(tempDir, `strings-${timestamp}.csv`);
-        await csvProcessor.generateCSV(sessionData.strings, 'strings', stringsPath);
-        archive.file(stringsPath, { name: 'strings.csv' });
-      }
+        archive.pipe(output);
 
-      // Generate classifications CSV
-      if (sessionData.classifications.length > 0) {
-        const classificationsPath = path.join(tempDir, `classifications-${timestamp}.csv`);
-        await csvProcessor.generateCSV(sessionData.classifications, 'classifications', classificationsPath);
-        archive.file(classificationsPath, { name: 'classifications.csv' });
-      }
-
-      await archive.finalize();
-
-      // Send ZIP file
-      res.download(zipPath, 'csv-export.zip', async (err) => {
-        if (err) {
-          logger.error('Error sending ZIP file:', err);
+        // Generate strings CSV
+        if (sessionData.strings.length > 0) {
+          const stringsPath = path.join(tempDir, `strings-${timestamp}.csv`);
+          await csvProcessor.generateCSV(sessionData.strings, 'strings', stringsPath);
+          archive.file(stringsPath, { name: 'strings.csv' });
+          tempFiles.push(stringsPath);
         }
-        // Clean up temporary files
-        try {
-          await fs.unlink(zipPath);
-        } catch (cleanupError) {
-          logger.error('Error cleaning up ZIP file:', cleanupError);
+
+        // Generate classifications CSV
+        if (sessionData.classifications.length > 0) {
+          const classificationsPath = path.join(tempDir, `classifications-${timestamp}.csv`);
+          await csvProcessor.generateCSV(sessionData.classifications, 'classifications', classificationsPath);
+          archive.file(classificationsPath, { name: 'classifications.csv' });
+          tempFiles.push(classificationsPath);
         }
-      });
+
+        // Wait for the archive to finish writing
+        await new Promise((resolve, reject) => {
+          output.on('close', () => {
+            logger.info(`Archive created successfully: ${zipPath}`);
+            resolve();
+          });
+          
+          output.on('error', (err) => {
+            logger.error('Output stream error:', err);
+            reject(err);
+          });
+          
+          archive.on('error', (err) => {
+            logger.error('Archive error:', err);
+            reject(err);
+          });
+          
+          // Finalize the archive
+          archive.finalize();
+        });
+
+        // Send ZIP file
+        res.download(zipPath, 'csv-export.zip', async (err) => {
+          if (err) {
+            logger.error('Error sending ZIP file:', err);
+          }
+          
+          // Clean up all temporary files
+          const cleanupPromises = [];
+          
+          // Clean up ZIP file
+          cleanupPromises.push(
+            fs.unlink(zipPath).catch(cleanupError => {
+              logger.error('Error cleaning up ZIP file:', cleanupError);
+            })
+          );
+          
+          // Clean up temporary CSV files
+          tempFiles.forEach(filePath => {
+            cleanupPromises.push(
+              fs.unlink(filePath).catch(cleanupError => {
+                logger.error(`Error cleaning up temp file ${filePath}:`, cleanupError);
+              })
+            );
+          });
+          
+          await Promise.all(cleanupPromises);
+        });
+        
+      } catch (error) {
+        logger.error('Error creating ZIP file:', error);
+        
+        // Clean up temporary files on error
+        const cleanupPromises = tempFiles.map(filePath => 
+          fs.unlink(filePath).catch(cleanupError => {
+            logger.error(`Error cleaning up temp file ${filePath}:`, cleanupError);
+          })
+        );
+        
+        if (require('fs').existsSync(zipPath)) {
+          cleanupPromises.push(
+            fs.unlink(zipPath).catch(cleanupError => {
+              logger.error('Error cleaning up ZIP file:', cleanupError);
+            })
+          );
+        }
+        
+        await Promise.all(cleanupPromises);
+        
+        return res.status(500).json({
+          success: false,
+          error: 'Failed to create ZIP file'
+        });
+      }
 
     } else {
       // Export single file
