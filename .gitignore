@@ -106,3 +106,4 @@ test-output*.csv
 *.backup
 *.bak
 *.md
+*.sh
