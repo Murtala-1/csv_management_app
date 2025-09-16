@@ -15,6 +15,7 @@
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider craco start",
     "build": "NODE_OPTIONS=--openssl-legacy-provider craco build",
+    "build:docker": "NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },

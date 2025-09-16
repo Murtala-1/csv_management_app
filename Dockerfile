@@ -9,9 +9,9 @@ WORKDIR /app
 COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
 
-# Install dependencies
-RUN cd backend && npm ci --only=production && npm cache clean --force
-RUN cd frontend && npm ci --only=production && npm cache clean --force
+# Install dependencies - use npm install instead of npm ci for better compatibility
+RUN cd backend && npm install --only=production && npm cache clean --force
+RUN cd frontend && npm install --only=production && npm cache clean --force
 
 # Build frontend
 FROM base AS frontend-builder
@@ -19,10 +19,10 @@ WORKDIR /app/frontend
 
 # Copy frontend source
 COPY frontend/package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY frontend/ ./
-RUN npm run build
+RUN npm run build:docker
 
 # Build backend
 FROM base AS backend-builder
@@ -30,7 +30,7 @@ WORKDIR /app/backend
 
 # Copy backend source
 COPY backend/package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY backend/ ./
 
