@@ -255,7 +255,17 @@ router.get('/export', async (req, res, next) => {
 
     // Create temporary directory for exports
     const tempDir = path.join(__dirname, '../../temp');
-    await fs.mkdir(tempDir, { recursive: true });
+    try {
+      await fs.mkdir(tempDir, { recursive: true, mode: 0o755 });
+    } catch (error) {
+      if (error.code !== 'EEXIST') {
+        logger.error('Error creating temp directory:', error);
+        return res.status(500).json({
+          success: false,
+          error: 'Unable to create temporary directory for export'
+        });
+      }
+    }
 
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 

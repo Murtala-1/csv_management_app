@@ -38,18 +38,14 @@ COPY backend/ ./
 FROM base AS runner
 WORKDIR /app
 
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 csvapp
-
 # Copy built applications
-COPY --from=deps --chown=csvapp:nodejs /app/backend/node_modules ./backend/node_modules
-COPY --from=backend-builder --chown=csvapp:nodejs /app/backend ./backend
-COPY --from=frontend-builder --chown=csvapp:nodejs /app/frontend/build ./frontend/build
+COPY --from=deps /app/backend/node_modules ./backend/node_modules
+COPY --from=backend-builder /app/backend ./backend
+COPY --from=frontend-builder /app/frontend/build ./frontend/build
 
 # Create necessary directories
 RUN mkdir -p /app/backend/logs /app/backend/temp /app/backend/uploads
-RUN chown -R csvapp:nodejs /app/backend/logs /app/backend/temp /app/backend/uploads
+RUN chmod -R 755 /app/backend/logs /app/backend/temp /app/backend/uploads
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -58,9 +54,6 @@ ENV FRONTEND_URL=http://localhost:3000
 
 # Expose port
 EXPOSE 3001
-
-# Switch to non-root user
-USER csvapp
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
