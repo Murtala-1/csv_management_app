@@ -392,186 +392,85 @@ const CSVManagementApp = () => {
   const hasData = data.strings.length > 0 || data.classifications.length > 0;
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="min-h-screen bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
       {/* Header */}
-      <header style={{ 
-        backgroundColor: 'white', 
-        padding: '20px', 
-        marginBottom: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <header className="card p-6 mb-6">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h1 style={{ margin: '0 0 10px 0', color: '#333' }}>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               CSV Data Management Application
             </h1>
-            <p style={{ margin: 0, color: '#666' }}>
+            <p className="text-gray-600">
               Upload, validate, and manage CSV data files
             </p>
           </div>
           {hasUnsavedChanges && (
-            <div style={{ 
-              backgroundColor: '#fff3cd', 
-              color: '#856404', 
-              padding: '8px 12px', 
-              borderRadius: '4px',
-              border: '1px solid #ffeaa7',
-              fontSize: '14px',
-              fontWeight: 'bold'
-            }}>
-              ⚠️ Unsaved Changes
+            <div className="bg-warning-100 text-warning-800 px-3 py-2 rounded-lg border border-warning-200 text-sm font-medium flex items-center gap-2">
+              <span>⚠️</span>
+              <span>Unsaved Changes</span>
             </div>
           )}
         </div>
       </header>
 
       {/* File Upload Section */}
-      <section style={{ 
-        backgroundColor: 'white', 
-        padding: '24px', 
-        marginBottom: '20px',
-        borderRadius: '12px',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.06)',
-        border: '1px solid #e5e7eb'
-      }}>
-        <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ 
-            marginTop: 0, 
-            marginBottom: '8px',
-            fontSize: '20px',
-            fontWeight: '600',
-            color: '#1f2937'
-          }}>Upload CSV Files</h2>
-          <p style={{ 
-            margin: 0, 
-            color: '#6b7280', 
-            fontSize: '14px'
-          }}>
+      <section className="card p-6 mb-6">
+        <div className="mb-6">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
+            Upload CSV Files
+          </h2>
+          <p className="text-gray-600 text-sm sm:text-base">
             Upload your CSV files for data management and validation
           </p>
         </div>
         
+       
         
-        
-
-        
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '24px' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Strings File */}
-          <div style={{ 
-            border: '1px solid #e5e7eb', 
-            padding: '20px', 
-            borderRadius: '10px',
-            backgroundColor: '#fafafa',
-            transition: 'all 0.2s ease'
-          }}>
-            <div style={{ marginBottom: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                <h3 style={{ 
-                  margin: 0,
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  color: '#1f2937'
-                }}>Strings File</h3>
+          <div className="border border-gray-200 p-5 rounded-xl bg-gray-50 transition-all duration-200 hover:shadow-md">
+            <div className="mb-4">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 m-0">Strings File</h3>
                 <button
                   onClick={() => downloadTemplate('strings')}
-                  style={{
-                    backgroundColor: '#22c55e',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    padding: '4px 8px',
-                    fontSize: '11px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '3px'
-                  }}
+                  className="btn-success text-xs px-2 py-1 flex items-center gap-1"
                 >
                   <span>⬇️</span>
                   Template
                 </button>
               </div>
-              <div style={{ fontSize: '13px', color: '#6b7280' }}>
-                <p style={{ margin: '0 0 6px 0', fontWeight: '500' }}>Required columns:</p>
-                <p style={{ 
-                  margin: 0, 
-                  lineHeight: '1.4',
-                  fontFamily: 'monospace',
-                  fontSize: '12px',
-                  color: '#4b5563',
-                  backgroundColor: '#f3f4f6',
-                  padding: '6px 8px',
-                  borderRadius: '4px'
-                }}>
+              <div className="text-sm text-gray-600">
+                <p className="mb-2 font-medium">Required columns:</p>
+                <p className="font-mono text-xs text-gray-700 bg-gray-100 px-2 py-1.5 rounded border">
                   Tier, Industry, Topic, Subtopic, Prefix, Fuzzing-Idx, Prompt, Risks, Keywords
                 </p>
               </div>
             </div>
             
-            <div style={{ position: 'relative' }}>
+            <div className="relative">
               <input 
                 type="file" 
                 accept=".csv"
                 onChange={(e) => handleFileChange(e, 'stringsFile')}
-                style={{
-                  position: 'absolute',
-                  opacity: 0,
-                  width: '100%',
-                  height: '100%',
-                  cursor: 'pointer'
-                }}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
-              <div style={{
-                border: '2px dashed #d1d5db',
-                borderRadius: '8px',
-                padding: '16px',
-                textAlign: 'center',
-                backgroundColor: 'white',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}>
-                <div style={{ fontSize: '24px', marginBottom: '8px' }}>📄</div>
-                <p style={{ 
-                  margin: '0 0 4px 0', 
-                  fontSize: '14px', 
-                  fontWeight: '500',
-                  color: '#374151'
-                }}>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center bg-white cursor-pointer transition-all duration-200 hover:border-gray-400 hover:bg-gray-50">
+                <div className="text-2xl mb-2">📄</div>
+                <p className="text-sm font-medium text-gray-700 mb-1">
                   Choose strings file
                 </p>
-                <p style={{ 
-                  margin: 0, 
-                  fontSize: '12px', 
-                  color: '#9ca3af'
-                }}>
+                <p className="text-xs text-gray-500">
                   Click to browse or drag & drop
                 </p>
               </div>
             </div>
             
             {files.stringsFile && (
-              <div style={{ 
-                marginTop: '12px',
-                padding: '8px 12px',
-                backgroundColor: '#ecfdf5',
-                border: '1px solid #a7f3d0',
-                borderRadius: '6px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}>
-                <span style={{ color: '#059669', fontSize: '14px' }}>✓</span>
-                <span style={{ 
-                  fontSize: '13px', 
-                  color: '#065f46',
-                  fontWeight: '500',
-                  flex: 1,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap'
-                }}>
+              <div className="mt-3 p-2 bg-success-50 border border-success-200 rounded-md flex items-center gap-2">
+                <span className="text-success-600 text-sm">✓</span>
+                <span className="text-sm text-success-800 font-medium flex-1 truncate">
                   {files.stringsFile.name}
                 </span>
               </div>
@@ -579,120 +478,48 @@ const CSVManagementApp = () => {
           </div>
 
           {/* Classifications File */}
-          <div style={{ 
-            border: '1px solid #e5e7eb', 
-            padding: '20px', 
-            borderRadius: '10px',
-            backgroundColor: '#fafafa',
-            transition: 'all 0.2s ease'
-          }}>
-            <div style={{ marginBottom: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                <h3 style={{ 
-                  margin: 0,
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  color: '#1f2937'
-                }}>Classifications File</h3>
+          <div className="border border-gray-200 p-5 rounded-xl bg-gray-50 transition-all duration-200 hover:shadow-md">
+            <div className="mb-4">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 m-0">Classifications File</h3>
                 <button
                   onClick={() => downloadTemplate('classifications')}
-                  style={{
-                    backgroundColor: '#22c55e',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    padding: '4px 8px',
-                    fontSize: '11px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '3px'
-                  }}
+                  className="btn-success text-xs px-2 py-1 flex items-center gap-1"
                 >
                   <span>⬇️</span>
                   Template
                 </button>
               </div>
-              <div style={{ fontSize: '13px', color: '#6b7280' }}>
-                <p style={{ margin: '0 0 6px 0', fontWeight: '500' }}>Required columns:</p>
-                <p style={{ 
-                  margin: 0, 
-                  lineHeight: '1.4',
-                  fontFamily: 'monospace',
-                  fontSize: '12px',
-                  color: '#4b5563',
-                  backgroundColor: '#f3f4f6',
-                  padding: '6px 8px',
-                  borderRadius: '4px'
-                }}>
+              <div className="text-sm text-gray-600">
+                <p className="mb-2 font-medium">Required columns:</p>
+                <p className="font-mono text-xs text-gray-700 bg-gray-100 px-2 py-1.5 rounded border">
                   Topic, SubTopic, Industry, Classification
                 </p>
               </div>
             </div>
             
-            <div style={{ position: 'relative' }}>
+            <div className="relative">
               <input 
                 type="file" 
                 accept=".csv"
                 onChange={(e) => handleFileChange(e, 'classificationsFile')}
-                style={{
-                  position: 'absolute',
-                  opacity: 0,
-                  width: '100%',
-                  height: '100%',
-                  cursor: 'pointer'
-                }}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
-              <div style={{
-                border: '2px dashed #d1d5db',
-                borderRadius: '8px',
-                padding: '16px',
-                textAlign: 'center',
-                backgroundColor: 'white',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}>
-                <div style={{ fontSize: '24px', marginBottom: '8px' }}>📈</div>
-                <p style={{ 
-                  margin: '0 0 4px 0', 
-                  fontSize: '14px', 
-                  fontWeight: '500',
-                  color: '#374151'
-                }}>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center bg-white cursor-pointer transition-all duration-200 hover:border-gray-400 hover:bg-gray-50">
+                <div className="text-2xl mb-2">📈</div>
+                <p className="text-sm font-medium text-gray-700 mb-1">
                   Choose classifications file
                 </p>
-                <p style={{ 
-                  margin: 0, 
-                  fontSize: '12px', 
-                  color: '#9ca3af'
-                }}>
+                <p className="text-xs text-gray-500">
                   Click to browse or drag & drop
                 </p>
               </div>
             </div>
             
             {files.classificationsFile && (
-              <div style={{ 
-                marginTop: '12px',
-                padding: '8px 12px',
-                backgroundColor: '#ecfdf5',
-                border: '1px solid #a7f3d0',
-                borderRadius: '6px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}>
-                <span style={{ color: '#059669', fontSize: '14px' }}>✓</span>
-                <span style={{ 
-                  fontSize: '13px', 
-                  color: '#065f46',
-                  fontWeight: '500',
-                  flex: 1,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap'
-                }}>
+              <div className="mt-3 p-2 bg-success-50 border border-success-200 rounded-md flex items-center gap-2">
+                <span className="text-success-600 text-sm">✓</span>
+                <span className="text-sm text-success-800 font-medium flex-1 truncate">
                   {files.classificationsFile.name}
                 </span>
               </div>
@@ -700,57 +527,32 @@ const CSVManagementApp = () => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="flex justify-center">
           <button 
             onClick={uploadFiles}
             disabled={uploading || (!files.stringsFile && !files.classificationsFile)}
-            style={{
-              backgroundColor: uploading ? '#9ca3af' : (!files.stringsFile && !files.classificationsFile) ? '#d1d5db' : '#2563eb',
-              color: 'white',
-              padding: '14px 32px',
-              border: 'none',
-              borderRadius: '8px',
-              cursor: (uploading || (!files.stringsFile && !files.classificationsFile)) ? 'not-allowed' : 'pointer',
-              fontSize: '15px',
-              fontWeight: '600',
-              boxShadow: (uploading || (!files.stringsFile && !files.classificationsFile)) ? 'none' : '0 2px 4px rgba(37, 99, 235, 0.2)',
-              transition: 'all 0.2s ease',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              minWidth: '160px',
-              justifyContent: 'center'
-            }}
+            className={`
+              px-8 py-3.5 rounded-lg font-semibold text-white transition-all duration-200 
+              flex items-center gap-2 min-w-40 justify-center
+              ${uploading || (!files.stringsFile && !files.classificationsFile) 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'btn-primary shadow-lg hover:shadow-xl'
+              }
+            `}
           >
             {uploading ? (
               <>
-                <div style={{
-                  width: '16px',
-                  height: '16px',
-                  border: '2px solid #ffffff40',
-                  borderTop: '2px solid #ffffff',
-                  borderRadius: '50%',
-                  animation: 'spin 1s linear infinite'
-                }} />
+                <div className="loading-spinner w-4 h-4" />
                 <span>Uploading...</span>
               </>
             ) : (
               <>
-                <span style={{ fontSize: '16px' }}>☁️</span>
+                <span className="text-base">☁️</span>
                 <span>Upload Files</span>
               </>
             )}
           </button>
         </div>
-        
-        <style>
-          {`
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-          `}
-        </style>
       </section>
 
       {/* Data Display and Actions */}
@@ -1244,6 +1046,7 @@ const CSVManagementApp = () => {
           </div>
         </section>
       )}
+      </div>
     </div>
   );
 };
