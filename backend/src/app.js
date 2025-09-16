@@ -38,24 +38,45 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Serve React build files in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../public')));
+  const frontendBuildPath = path.join(__dirname, '../../frontend/build');
+  const indexHtmlPath = path.join(frontendBuildPath, 'index.html');
   
-  // Catch all handler for React Router
-  app.get('*', (req, res, next) => {
-    // Skip API routes
-    if (req.path.startsWith('/api') || req.path.startsWith('/health')) {
-      return next();
-    }
-    res.sendFile(path.join(__dirname, '../public/index.html'));
-  });
+  // Check if frontend build exists
+  const fs = require('fs');
+  if (fs.existsSync(frontendBuildPath) && fs.existsSync(indexHtmlPath)) {
+    app.use(express.static(frontendBuildPath));
+    
+    // Catch all handler for React Router
+    app.get('*', (req, res, next) => {
+      // Skip API routes
+      if (req.path.startsWith('/api') || req.path.startsWith('/health')) {
+        return next();
+      }
+      res.sendFile(indexHtmlPath);
+    });
+    
+    logger.info(`Serving frontend from: ${frontendBuildPath}`);
+  } else {
+    logger.warn(`Frontend build not found at: ${frontendBuildPath}`);
+    logger.warn('Running in API-only mode');
+  }
 }
 
 // Health check endpoint
 app.get('/health', (req, res) => {
+  const fs = require('fs');
+  const frontendBuildPath = path.join(__dirname, '../../frontend/build');
+  const frontendExists = fs.existsSync(frontendBuildPath);
+  
   res.status(200).json({
     status: 'OK',
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development',
+    frontend: {
+      buildExists: frontendExists,
+      buildPath: frontendBuildPath
+    }
   });
 });
 
