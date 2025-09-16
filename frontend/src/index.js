@@ -1,13 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import CSVManagementApp from './CSVManagementApp';
 import { Toaster } from 'react-hot-toast';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CSVManagementApp />
     <Toaster
       position="top-right"
       toastOptions={{
@@ -32,5 +31,6 @@ root.render(
         },
       }}
     />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

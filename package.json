@@ -21,6 +21,8 @@
     "docker:run": "docker run -p 3001:3001 csv-management-app",
     "docker:dev": "docker-compose up --build",
     "docker:prod": "docker-compose --profile production up --build",
+    "render:build": "cd backend && npm ci --only=production && cd ../frontend && npm ci && npm run build && mv build ../backend/public",
+    "render:start": "cd backend && npm start",
     "lint:backend": "cd backend && npx eslint src/",
     "lint:frontend": "cd frontend && npx eslint src/",
     "lint": "npm run lint:backend && npm run lint:frontend"

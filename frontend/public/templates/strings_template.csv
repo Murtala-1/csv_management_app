@@ -1,0 +1,6 @@
+Tier,Industry,Topic,Subtopic,Prefix,Fuzzing-Idx,Prompt,Risks,Keywords
+1,Technology,Security,Authentication,Se-Au-,0,What are the current authentication methods used in the system?,Low,authentication login security
+1,Technology,Security,Data Protection,Se-Da-,0,How is sensitive data encrypted in our databases?,Medium,encryption data protection privacy
+2,Finance,Compliance,Audit Findings,Co-Au-,0,What were the key findings from the latest financial audit?,High,audit compliance financial
+1,Healthcare,Patient Care,Medical Records,Pa-Me-,0,How are patient medical records stored and accessed?,High,medical records patient privacy
+2,Technology,Operations,System Monitoring,Op-Sy-,0,What monitoring tools are used for system performance?,Low,monitoring performance systems
