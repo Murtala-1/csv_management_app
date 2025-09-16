@@ -9,7 +9,7 @@
       name="description"
       content="CSV Data Management Application - Upload, validate, and manage CSV files with real-time validation and export capabilities."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.svg" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
     <!-- Preconnect to improve performance -->
@@ -24,12 +24,12 @@
     <meta property="og:description" content="Upload, validate, and manage CSV files with real-time validation and export capabilities." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="%PUBLIC_URL%" />
-    <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+    <meta property="og:image" content="%PUBLIC_URL%/favicon.svg" />
     
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="CSV Data Management Application" />
     <meta name="twitter:description" content="Upload, validate, and manage CSV files with real-time validation and export capabilities." />
-    <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+    <meta name="twitter:image" content="%PUBLIC_URL%/favicon.svg" />
     
     <!-- Additional Meta Tags -->
     <meta name="author" content="CSV Management Team" />
@@ -112,6 +112,16 @@
       .react-loaded #loading-screen {
         display: none;
       }
+      
+      /* Auto-hide loading screen after animation */
+      #loading-screen {
+        animation: fadeOut 3s ease-in-out 2s forwards;
+      }
+      
+      @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; visibility: hidden; }
+      }
     </style>
   </head>
   <body>
@@ -132,27 +142,6 @@
     <!-- React App Root -->
     <div id="root"></div>
     
-    <script>
-      // Hide loading screen when React app loads
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          const loadingScreen = document.getElementById('loading-screen');
-          if (loadingScreen) {
-            loadingScreen.classList.add('fade-out');
-            setTimeout(function() {
-              loadingScreen.style.display = 'none';
-            }, 500);
-          }
-        }, 1000);
-      });
-      
-      // Fallback: Hide loading screen after 5 seconds
-      setTimeout(function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-          loadingScreen.style.display = 'none';
-        }
-      }, 5000);
-    </script>
+
   </body>
 </html>

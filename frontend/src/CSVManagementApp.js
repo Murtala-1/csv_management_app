@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { csvAPI } from './utils/api';
 
 const CSVManagementApp = () => {
@@ -390,6 +390,17 @@ const CSVManagementApp = () => {
   }, []);
 
   const hasData = data.strings.length > 0 || data.classifications.length > 0;
+
+  // Hide loading screen when component mounts
+  useEffect(() => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+      }, 100);
+    }
+    document.body.classList.add('react-loaded');
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
